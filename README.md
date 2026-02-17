@@ -34,47 +34,37 @@ This repository implements an interpretable machine learning framework for predi
 ---
 
 ## Project Structure
-Sendust-ml-featurization-SHAP/
-│
-├── data/
-│ ├── external_validation/ # Dataset for external validation
-│ ├── raw/ # Data for featurization
-│ └── training/ # Processed training data with selected features
-│
-├── models/ # Trained models (36 total: 3 methods × 3 properties × 4 algorithms)
-│ ├── composition/ # Baseline models (composition only)
-│ ├── wenalloys/ # Models with WenAlloys features
-│ └── oliynyk/ # Models with CBFV features
-│ └── [property]/ # Subdirectories: coercivity, saturation_polarization, resistivity
-│
-├── notebooks/ # Jupyter notebooks (15 total)
-│ ├── preprocessing_.ipynb # Data preprocessing for each method
-│ ├── oliynyk_optuna_fs.ipynb # Optuna feature selection
-│ ├── 1-3_composition_.ipynb # Baseline training (3 properties)
-│ ├── 4-6_wenalloys_.ipynb # WenAlloys training (3 properties)
-│ ├── 7-9_oliynyk_.ipynb # CBFV training (3 properties)
-│ └── 10-12_oliynyk_*_extraction.ipynb # Feature extraction
-│
-├── results/
-│ ├── metrics/ # Model performance metrics (.xlsx files)
-│ │ ├── composition/
-│ │ ├── wenalloys/
-│ │ └── oliynyk/
-│ │
-│ ├── shap/ # SHAP interpretability visualizations
-│ │ ├── beeswarm/ # SHAP beeswarm plots (wenalloys, oliynyk)
-│ │ └── grid-shap/ # Grid-SHAP plots (composition, wenalloys, oliynyk)
-│ │
-│ └── validation/ # External validation predictions
-│ ├── predictions_all.xlsx
-│ └── [method]/ # Per-method validation results
-│
-├── scripts/
-│ └── wenalloys_corrected.py # WenAlloys featurization utility
-│
-├── .gitignore
-├── LICENSE
-├── README.md
-└── requirements.txt
-**Properties:** Hc (Coercivity), Js (Saturation Polarization), rho (Resistivity)  
+### Data (`data/`)
+- `external_validation/` — Independent validation dataset
+- `raw/` — Raw composition data and extracted features
+- `training/` — Processed training data with selected features
+
+### Models (`models/`)
+36 trained models organized by method and property:
+- `composition/` — Baseline models (composition only)
+- `wenalloys/` — Models with WenAlloys features
+- `oliynyk/` — Models with CBFV features
+
+Each subdirectory contains models for 3 properties × 4 algorithms (RFR, ETR, GBR, XGB)
+
+### Notebooks (`notebooks/`)
+15 Jupyter notebooks covering:
+- Data preprocessing for each method
+- Feature extraction and selection (Optuna)
+- Model training for all property-method combinations
+- SHAP interpretation and validation
+
+### Results (`results/`)
+- `metrics/` — Model performance metrics (Excel files)
+- `shap/` — SHAP visualizations
+  - `beeswarm/` — SHAP beeswarm plots
+  - `grid-shap/` — Grid-SHAP visualizations
+- `validation/` — External validation predictions
+
+### Scripts (`scripts/`)
+- `wenalloys_corrected.py` — WenAlloys featurization utility
+
+---
+
+**Properties:** Hc (Coercivity, A/m), Js (Saturation Polarization, T), rho (Resistivity, Ω·cm)  
 **Algorithms:** RFR (Random Forest), ETR (Extra Trees), GBR (Gradient Boosting), XGB (XGBoost)
