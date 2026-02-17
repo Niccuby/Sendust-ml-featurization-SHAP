@@ -2,7 +2,7 @@
 # Machine Learning-Guided Design of Sendust Alloys with SHAP Interpretation
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 
 > **Note:** This repository contains the code and data for the research paper:  
 > *Interpretable Machine Learning for Functional Properties Prediction of Fe-Si-Al Alloys via Feature Engineering* (in preparation)
@@ -12,16 +12,16 @@
 This repository implements an interpretable machine learning framework for predicting magnetic and electrical properties of Fe-Si-Al (Sendust) soft magnetic alloys. The study combines:
 
 - **Composition-based prediction** using chemical composition as features
-- **Featurization methods**: WenAlloys and CBFV (Composition-Based Feature Vector by Oliynyk)
+- **Featurization methods**: matminer.WenAlloys and CBFV.oliynyk (Composition-Based Feature Vector by Oliynyk)
 - **Feature selection** via Optuna with LightGBM
-- **ML algorithms**: Random Forest, Extra Trees, Gradient Boosting, XGBoost
-- **Interpretability**: SHAP (SHapley Additive exPlanations) analysis with custom Grid-SHAP visualization
+- **ML algorithms**: Random Forest Regressor, Extra Trees Regressor, Gradient Boosting Regressor, XGBoost
+- **Interpretability**: SHAP (SHapley Additive exPlanations) analysis with SHAP beeswarm and custom Grid-SHAP visualization
 
 ### Target Properties
 
 - **Coercivity** (A/m) — magnetic property
 - **Saturation Polarization** (T) — magnetic property  
-- **Resistivity** (Ω·cm) — electrical property
+- **Resistivity** (μΩ·cm) — electrical property
 
 ## Key Features
 
@@ -43,7 +43,7 @@ This repository implements an interpretable machine learning framework for predi
 36 trained models organized by method and property:
 - `composition/` — Baseline models (composition only)
 - `wenalloys/` — Models with WenAlloys features
-- `oliynyk/` — Models with CBFV features
+- `oliynyk/` — Models with Oliynyk features
 
 Each subdirectory contains models for 3 properties × 4 algorithms (RFR, ETR, GBR, XGB)
 
@@ -62,9 +62,9 @@ Each subdirectory contains models for 3 properties × 4 algorithms (RFR, ETR, GB
 - `validation/` — External validation predictions
 
 ### Scripts (`scripts/`)
-- `wenalloys_corrected.py` — WenAlloys featurization updated
+- `wenalloys_corrected.py` — Updated WenAlloys featurization
 
 ---
 
-**Properties:** Hc (Coercivity, A/m), Js (Saturation Polarization, T), rho (Resistivity, Ω·cm)  
-**Algorithms:** RFR (Random Forest), ETR (Extra Trees), GBR (Gradient Boosting), XGB (XGBoost)
+**Properties:** Hc (Coercivity, A/m), Js (Saturation Polarization, T), rho (Resistivity, μΩ·cm)  
+**Algorithms:** RFR (Random Forest Regressor), ETR (Extra Trees Regressor), GBR (Gradient Boosting Regressor), XGB (XGBoost)
