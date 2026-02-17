@@ -35,8 +35,8 @@ This repository implements an interpretable machine learning framework for predi
 
 ## Project Structure
 ### Data (`data/`)
-- `external_validation/` — Independent validation dataset
-- `raw/` — Raw composition data and extracted features
+- `external_validation/` — Dataset for external validation
+- `raw/` — Data for featurization
 - `training/` — Processed training data with selected features
 
 ### Models (`models/`)
@@ -62,7 +62,7 @@ Each subdirectory contains models for 3 properties × 4 algorithms (RFR, ETR, GB
 - `validation/` — External validation predictions
 
 ### Scripts (`scripts/`)
-- `wenalloys_corrected.py` — WenAlloys featurization utility
+- `wenalloys_corrected.py` — WenAlloys featurization updated
 
 ---
 
