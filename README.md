@@ -25,11 +25,11 @@ This repository implements an interpretable machine learning framework for predi
 
 ## Key Features
 
-✅ Comprehensive ML pipeline from raw composition to property prediction  
-✅ Two featurization strategies with manual automated feature selection  
-✅ Model interpretability with SHAP beeswarm and Grid-SHAP visualizations  
-✅ External validation on independent test set  
-✅ Reproducible workflow with pre-trained models  
+- ML pipeline from raw composition to property prediction  
+- Two featurization strategies with manual and automated feature selection  
+- Model interpretability with SHAP beeswarm and Grid-SHAP visualizations  
+- External validation on independent test set  
+- Reproducible workflow with pre-trained models  
 
 ---
 
