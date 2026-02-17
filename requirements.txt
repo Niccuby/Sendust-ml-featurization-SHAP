@@ -1,0 +1,31 @@
+# Core scientific computing
+numpy
+pandas
+
+# Machine learning
+scikit-learn
+xgboost
+
+# Model interpretation
+shap
+
+# Visualization
+matplotlib
+
+# Materials science featurization
+matminer
+pymatgen
+
+# Hyperparameter optimization
+optuna
+lightgbm
+
+# Model persistence
+joblib
+
+# Jupyter notebooks
+jupyter
+ipython
+
+# Excel file support
+openpyxl
