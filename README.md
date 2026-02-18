@@ -18,9 +18,10 @@ This repository implements an interpretable machine learning framework for predi
 - **Interpretability**: SHAP (SHapley Additive exPlanations) analysis with SHAP beeswarm and custom Grid-SHAP visualization
 
 <p align="center">
-  <img src="assets/workflow_figure.png" alt="ML Pipeline Workflow" width="800"/>
+  <img src="assets/workflow_figure.png" alt="ML Pipeline Workflow" width="800"
+    style="border-radius: 12px; border: 1px solid #d0d7de; padding: 8px;"/>
   <br>
-  <em>Figure Fig. 1. Overall workflow: from data processing and feature engineering to model interpretation and validation.</em>
+  <em>Overall workflow: from data processing and feature engineering to model interpretation and validation.</em>
 </p>
 
 ### Target Properties
