@@ -18,10 +18,11 @@ This repository implements an interpretable machine learning framework for predi
 - **Interpretability**: SHAP (SHapley Additive exPlanations) analysis with SHAP beeswarm and custom Grid-SHAP visualization
 
 <p align="center">
-  <img src="assets/workflow_figure.png" alt="ML Pipeline Workflow" width="800"
-    style="border-radius: 12px; border: 1px solid #d0d7de; padding: 8px;"/>
+  <img src="assets/workflow_figure.png" alt="ML Pipeline Workflow" width="800"/>
   <br>
   <em>Overall workflow: from data processing and feature engineering to model interpretation and validation.</em>
+  <br>
+  <em>This repository contains the full implementation code for the pipeline shown above.</em>
 </p>
 
 ### Target Properties
@@ -85,9 +86,9 @@ with tuned hyperparameters for each target property.
 
 #### Step 2 — WenAlloys Featurization + Model Training
 
-Data preprocessing converts chemical composition (wt%) into elemental formulas,
+Data preprocessing converts chemical composition (wt%) into (at%) elemental formulas,
 followed by featurization using the matminer WenAlloys descriptor set,
-manual feature selection, and training + validation of all four ML models.
+manual feature selection, and training and validation of all four ML models.
 
 | Notebook | Description |
 |---|---|
@@ -100,9 +101,10 @@ manual feature selection, and training + validation of all four ML models.
 
 #### Step 3 — Oliynyk (CBFV) Feature Extraction
 
-Data preprocessing and featurization using the CBFV Oliynyk descriptor set
-(Composition-Based Feature Vector). These notebooks extract raw Oliynyk features
-from chemical formulas and save them for downstream feature selection and model training.
+Data preprocessing converts chemical composition (wt%) into (at%) elemental formulas
+for subsequent featurization using the CBFV Oliynyk descriptor set.
+These notebooks extract raw Oliynyk features from chemical formulas 
+and save them for downstream feature selection and model training.
 
 | Notebook | Description |
 |---|---|
