@@ -17,6 +17,12 @@ This repository implements an interpretable machine learning framework for predi
 - **ML algorithms**: Random Forest Regressor, Extra Trees Regressor, Gradient Boosting Regressor, XGBoost
 - **Interpretability**: SHAP (SHapley Additive exPlanations) analysis with SHAP beeswarm and custom Grid-SHAP visualization
 
+<p align="center">
+  <img src="assets/workflow_figure.png" alt="ML Pipeline Workflow" width="800"/>
+  <br>
+  <em>Figure Fig. 1. Overall workflow: from data processing and feature engineering to model interpretation and validation.</em>
+</p>
+
 ### Target Properties
 
 - **Coercivity** (A/m) — magnetic property
@@ -53,6 +59,86 @@ Each subdirectory contains models for 3 properties × 4 algorithms (RFR, ETR, GB
 - Feature extraction and selection (Optuna)
 - Model training for all property-method combinations
 - SHAP interpretation and validation
+
+<details>
+<summary><strong>Notebooks (`notebooks/`)</strong></summary>
+
+15 Jupyter notebooks covering the full ML pipeline — from raw composition data
+to model training, feature engineering, feature selection, and SHAP interpretation.
+
+---
+
+#### Step 1 — Composition-Based Baseline Models
+
+Training and evaluation using raw chemical composition (Fe, Si, Al fractions) as features.
+Four regression algorithms (RFR, ETR, GBR, XGB) are trained and validated
+with tuned hyperparameters for each target property.
+
+| Notebook | Target Property |
+|---|---|
+| `01_composition_Hc.ipynb` | Coercivity (A/m) |
+| `02_composition_Js.ipynb` | Saturation Polarization (T) |
+| `03_composition_rho.ipynb` | Resistivity (μΩ·cm) |
+
+---
+
+#### Step 2 — WenAlloys Featurization + Model Training
+
+Data preprocessing converts chemical composition (wt%) into elemental formulas,
+followed by featurization using the matminer WenAlloys descriptor set,
+manual feature selection, and training + validation of all four ML models.
+
+| Notebook | Description |
+|---|---|
+| `04_preprocessing_wenalloys.ipynb` | Converts wt% composition into elemental formulas for WenAlloys |
+| `05_wenalloys_Hc.ipynb` | Featurization, feature selection, and model training — Coercivity (A/m) |
+| `06_wenalloys_Js.ipynb` | Featurization, feature selection, and model training — Saturation Polarization (T) |
+| `07_wenalloys_rho.ipynb` | Featurization, feature selection, and model training — Resistivity (μΩ·cm) |
+
+---
+
+#### Step 3 — Oliynyk (CBFV) Feature Extraction
+
+Data preprocessing and featurization using the CBFV Oliynyk descriptor set
+(Composition-Based Feature Vector). These notebooks extract raw Oliynyk features
+from chemical formulas and save them for downstream feature selection and model training.
+
+| Notebook | Description |
+|---|---|
+| `08_preprocessing_oliynyk.ipynb` | Converts wt% composition into elemental formulas for Oliynyk |
+| `09_oliynyk_Hc_extraction.ipynb` | Feature extraction — Coercivity (A/m) |
+| `10_oliynyk_Js_extraction.ipynb` | Feature extraction — Saturation Polarization (T) |
+| `11_oliynyk_rho_extraction.ipynb` | Feature extraction — Resistivity (μΩ·cm) |
+
+---
+
+#### Step 4 — Oliynyk Feature Selection (Optuna)
+
+| Notebook | Description |
+|---|---|
+| `12_oliynyk_optuna_fs.ipynb` | Automated feature selection for all three properties using Optuna with LightGBM as the selector model. Outputs the optimal feature subsets for each target. |
+
+---
+
+#### Step 5 — Oliynyk Model Training
+
+Training and evaluation using Oliynyk-selected features. Each notebook loads
+the feature subsets produced by the Optuna selection step and trains
+all four ML models (RFR, ETR, GBR, XGB) with the same hyperparameters used
+in Steps 1 and 2.
+
+| Notebook | Target Property |
+|---|---|
+| `13_oliynyk_Hc.ipynb` | Coercivity (A/m) |
+| `14_oliynyk_Js.ipynb` | Saturation Polarization (T) |
+| `15_oliynyk_rho.ipynb` | Resistivity (μΩ·cm) |
+
+---
+
+> **Pipeline order:**  
+> `01–03` → `04–07` → `08–12` → `13–15`
+
+</details>
 
 ### Results (`results/`)
 - `metrics/` — Model performance metrics (Excel files)
