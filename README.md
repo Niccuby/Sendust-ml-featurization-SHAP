@@ -155,18 +155,18 @@ in Steps 1 and 2.
 
 ---
 
-## WenAlloys Corrections
+## WenAlloys: Revised Implementation
 
-The original matminer WenAlloys implementation (v0.1.0) contains
-the following errors:
+During this work, we identified discrepancies between the matminer 
+WenAlloys implementation (v0.1.0) and the original formulas:
 
-| Parameter | Original (matminer v0.1.0) | Corrected |
-|-----------|---------------------------|-----------|
+| Parameter | matminer v0.1.0 | This work |
+|-----------|-----------------|-----------|
 | dS_config | missing negative sign | −Σ xᵢ·ln(xᵢ) |
 | dH_mix | abs() applied to full formula | abs() only in denominator |
 | Yang Omega | propagated error + internal Tm | recalculated with manual Tm |
 
-See `scripts/wenalloys_corrected.py` for the full corrected implementation.  
+See `scripts/wenalloys_corrected.py` for the revised implementation.  
 Issue filed upstream: https://github.com/uw-cmg/matminer/issues/962
 
 ---
