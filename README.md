@@ -155,5 +155,21 @@ in Steps 1 and 2.
 
 ---
 
+## WenAlloys Corrections
+
+The original matminer WenAlloys implementation (v0.1.0) contains
+the following errors:
+
+| Parameter | Original (matminer v0.1.0) | Corrected |
+|-----------|---------------------------|-----------|
+| dS_config | missing negative sign | −Σ xᵢ·ln(xᵢ) |
+| dH_mix | abs() applied to full formula | abs() only in denominator |
+| Yang Omega | propagated error + internal Tm | recalculated with manual Tm |
+
+See `scripts/wenalloys_corrected.py` for the full corrected implementation.  
+Issue filed upstream: https://github.com/uw-cmg/matminer/issues/962
+
+---
+
 **Properties:** Hc (Coercivity, A/m), Js (Saturation Polarization, T), rho (Resistivity, μΩ·cm)  
 **Algorithms:** RFR (Random Forest Regressor), ETR (Extra Trees Regressor), GBR (Gradient Boosting Regressor), XGB (XGBoost)
