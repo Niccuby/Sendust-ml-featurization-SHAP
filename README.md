@@ -45,6 +45,7 @@ This repository implements an interpretable machine learning framework for predi
 ### Data (`data/`)
 - `external_validation/` — Dataset for external validation
 - `raw/` — Data for featurization
+- `splits/` — Saved folds for cross validation
 - `training/` — Processed training data with selected features
 
 ### Models (`models/`)
@@ -152,6 +153,23 @@ in Steps 1 and 2.
 
 ### Scripts (`scripts/`)
 - `wenalloys_corrected.py` — Updated WenAlloys featurization
+
+---
+
+## WenAlloys: Revised Implementation
+
+During this work, we identified discrepancies between the matminer 
+WenAlloys implementation (v0.1.0) and the original formulas 
+from Wen et al. (2019):
+
+| Parameter | matminer v0.1.0 | This work |
+|-----------|-----------------|-----------|
+| Configuration entropy (ΔSmix) | missing negative sign | −Σ xᵢ·ln(xᵢ) |
+| Mixing enthalpy (ΔHmix) | abs() applied to full formula | abs() only in denominator |
+| Yang Omega (Ω) | propagated error + internal Tm | recalculated with manual Tm |
+
+See `scripts/wenalloys_corrected.py` for the revised implementation.  
+Issue filed upstream: https://github.com/hackingmaterials/matminer/issues/962
 
 ---
 
