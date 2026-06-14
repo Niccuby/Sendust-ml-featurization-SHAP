@@ -5,7 +5,8 @@
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 
 > **Note:** This repository contains the code and data for the research paper:  
-> *Interpretable Machine Learning for Functional Properties Prediction of Fe-Si-Al Alloys via Feature Engineering* (in preparation)
+> *Interpretable machine learning for functional properties prediction of Fe–Si–Al alloys via feature engineering*,
+> published in *Journal of Materials Science* [https://doi.org/10.1007/s10853-026-12999-z]
 
 ## Overview
 
@@ -160,7 +161,7 @@ in Steps 1 and 2.
 
 During this work, we identified discrepancies between the matminer 
 WenAlloys implementation (v0.1.0) and the original formulas 
-from Wen et al. (2019):
+from Guo (2015):
 
 | Parameter | matminer v0.1.0 | This work |
 |-----------|-----------------|-----------|
