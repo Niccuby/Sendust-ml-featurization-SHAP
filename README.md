@@ -157,20 +157,36 @@ in Steps 1 and 2.
 
 ---
 
-## WenAlloys: Revised Implementation
+## WenAlloys: revised implementation
 
-During this work, we identified discrepancies between the matminer 
-WenAlloys implementation (v0.1.0) and the original formulas 
-from Guo (2015):
+During this work, we identified discrepancies between the matminer `WenAlloys`
+implementation (v0.10.0 and v0.10.1) and the original formulas from Guo (2015):
 
-| Parameter | matminer v0.1.0 | This work |
-|-----------|-----------------|-----------|
-| Configuration entropy (ΔSmix) | missing negative sign | −Σ xᵢ·ln(xᵢ) |
-| Mixing enthalpy (ΔHmix) | abs() applied to full formula | abs() only in denominator |
-| Yang Omega (Ω) | propagated error + internal Tm | recalculated with manual Tm |
+| Parameter | matminer v0.10.0 / v0.10.1 | This work |
+|---|---|---|
+| Configurational entropy (ΔSmix) | missing negative sign | −R·Σ xᵢ·ln(xᵢ), positive for random solutions |
+| Mixing enthalpy (ΔHmix) | `abs()` applied, sign lost | sign preserved (negative for attractive interactions) |
+| Yang Omega (Ω) | computed internally from the above | recalculated with explicit Tm: Ω = Tm·ΔSmix / max(1e-6, \|ΔHmix\|) |
 
-See `scripts/wenalloys_corrected.py` for the revised implementation.  
-Issue filed upstream: https://github.com/hackingmaterials/matminer/issues/962
+The sign corrections change the values of the "Configuration entropy",
+"Lambda entropy" and "Mixing enthalpy" features. Yang Omega was recalculated
+for consistency; we did not independently verify whether its numerical value
+changes (upstream review suggests it does not, since the modulus already
+removed the sign of the entropy term).
+
+See `scripts/wenalloys_corrected.py` for the revised implementation.
+
+### Upstream status
+Upstream status: see [hackingmaterials/matminer#962](https://github.com/hackingmaterials/matminer/issues/962).
+Newer matminer releases may compute these features differently,
+so use the pinned versions in `requirements.txt` to reproduce the paper.
+
+### Reproducibility
+Results in the paper were obtained with `matminer==0.10.1` and
+`pymatgen==2026.5.4`. Use these pinned versions (see `requirements.txt`).
+Do not apply the corrections from this repository on top of a matminer
+version that already contains the upstream fix, otherwise the sign will be
+flipped twice.
 
 ---
 
