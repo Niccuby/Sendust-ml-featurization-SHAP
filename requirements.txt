@@ -13,8 +13,8 @@ shap
 matplotlib
 
 # Materials science featurization
-matminer
-pymatgen
+matminer==0.10.1
+pymatgen==2026.5.4
 
 # Hyperparameter optimization
 optuna
